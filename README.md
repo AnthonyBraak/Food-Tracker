@@ -1,11 +1,16 @@
 # Food Information API
+
 ## Overview
 
 This is a Spring Boot application that provides a RESTful API for managing food nutritional information. It allows users to create, read, update, and delete food items, as well as search by name or nutritional values.
 
 The application uses JPA for persistence with a MySQL database and includes validation to ensure all nutritional values are positive.
 
+![Frontend with React](https://github.com/AnthonyBraak/Food-Tracker/blob/main/images/frontend.png?raw=true)
+
 ## Technologies
+
+### Backend
 
 - Java 25
 
@@ -19,6 +24,14 @@ The application uses JPA for persistence with a MySQL database and includes vali
 
 - Maven
 
+### Frontend
+
+- React
+
+- TypeScript
+
+- Vite
+
 ## Features
 
 - CRUD Operations: Create, read, update, and delete food items.
@@ -30,23 +43,33 @@ The application uses JPA for persistence with a MySQL database and includes vali
 - Search: Find foods by name.
 
 ## API Endpoints
-### Get All Foods
-```GET /api/foods```
 
+### Get All Foods
+
+`GET /api/foods`
 
 Returns a list of all food items.
 
-### Get Food by ID
-```GET /api/foods/{id}```
+Tested with POSTMAN:
 
+![CRUD get with POSTMAN](https://github.com/AnthonyBraak/Food-Tracker/blob/main/images/CRUD-get.png?raw=true)
+
+### Get Food by ID
+
+`GET /api/foods/{id}`
 
 Returns the food item with the specified ID.
 
-### Add New Food
-```POST /api/foods```
+Visible in browser:
 
+![API in browser](https://github.com/AnthonyBraak/Food-Tracker/blob/main/images/api-json.png?raw=true)
+
+### Add New Food
+
+`POST /api/foods`
 
 Request Body Example:
+
 ```
 {
 "foodName": "Avocado",
@@ -64,22 +87,30 @@ Request Body Example:
 Returns the created food item.
 Validation errors are returned with detailed messages.
 
-### Update Food
-```PUT /api/foods/{id}```
+Tested with POSTMAN:
 
+![CRUD post with POSTMAN](https://github.com/AnthonyBraak/Food-Tracker/blob/main/images/CRUD-post.png?raw=true)
+
+Invalid post with POSTMAN:
+
+![Invalid CRUD post with POSTMAN](https://github.com/AnthonyBraak/Food-Tracker/blob/main/images/CRUD-invalid.png?raw=true)
+
+### Update Food
+
+`PUT /api/foods/{id}`
 
 Request Body: Same format as Add New Food.
 Returns the updated food item or a 404 error if the ID does not exist.
 
 ### Delete Food
-```DELETE /api/foods/{id}```
 
+`DELETE /api/foods/{id}`
 
 Deletes the food item with the specified ID. Returns 404 if the ID does not exist.
 
 ### Search Foods by Name
-```GET /api/foods/search?name={name}```
 
+`GET /api/foods/search?name={name}`
 
 Returns a list of food items matching the specified name.
 
@@ -87,38 +118,40 @@ Returns a list of food items matching the specified name.
 
 FoodInformation Entity Fields:
 
-```foodId```: Long (auto-generated)
+`foodId`: Long (auto-generated)
 
-```foodName```: String
+`foodName`: String
 
-```foodKcal```: BigDecimal
+`foodKcal`: BigDecimal
 
-```fat```: BigDecimal
+`fat`: BigDecimal
 
-```saturatedFat```: BigDecimal
+`saturatedFat`: BigDecimal
 
-```carbs```: BigDecimal
+`carbs`: BigDecimal
 
-```sugars```: BigDecimal
+`sugars`: BigDecimal
 
-```fibre```: BigDecimal
+`fibre`: BigDecimal
 
-```protein```: BigDecimal
+`protein`: BigDecimal
 
-```salt```: BigDecimal
+`salt`: BigDecimal
 
 All numerical fields are validated to be zero or positive.
 
 ## Setup and Run
 
 Clone the repository:
+
 ```
 git clone <repository-url>
 cd <repository-folder>
 ```
 
 Configure MySQL:
-Update ```src/main/resources/application.properties``` with your MySQL connection details:
+Update `src/main/resources/application.properties` with your MySQL connection details:
+
 ```
 spring.datasource.url=jdbc:mysql://localhost:3306/food_db
 spring.datasource.username=your_username
@@ -128,16 +161,19 @@ spring.jpa.show-sql=true
 ```
 
 Create the database in MySQL if it does not exist:
+
 ```
 CREATE DATABASE food_db;
 ```
 
 Build the application:
+
 ```
 mvn clean install
 ```
 
 Run the application:
+
 ```
 mvn spring-boot:run
 ```
